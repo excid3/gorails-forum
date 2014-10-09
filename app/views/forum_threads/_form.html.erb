@@ -1,22 +1,15 @@
-<%= form_for(@forum_thread) do |f| %>
-  <% if @forum_thread.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@forum_thread.errors.count, "error") %> prohibited this forum_thread from being saved:</h2>
+<%= form_for @forum_thread do |f| %>
+  <div class="form-group">
+    <%= f.text_field :subject, placeholder: "Subject", class: "form-control" %>
+  </div>
 
-      <ul>
-      <% @forum_thread.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= f.fields_for :forum_posts do |p| %>
+    <div class="form-group">
+      <%= p.text_area :body, placeholder: "Add a comment", rows: 10, class: "form-control" %>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :subject %>
-    <%= f.text_field :subject, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.button class: "btn btn-primary" %>
+    <%= f.submit %>
   </div>
 <% end %>

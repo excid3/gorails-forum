@@ -1,12 +1,8 @@
-<h1>Listing forum_threads</h1>
-
-<% @forum_threads.each do |forum_thread| %>
-  <div>
-    <h2><%= link_to forum_thread.subject, forum_thread %></h2>
-    <p>Created by <%= forum_thread.user.first_name %></p>
+<div class="container">
+  <div class="pull-right">
+    <%= link_to "New Thread", new_forum_thread_path, class: "btn btn-success" %>
   </div>
-<% end %>
 
-<br>
-
-<%= link_to 'New Forum thread', new_forum_thread_path %>
+  <h1 class="page-header">Forum Threads</h1>
+  <%= render @forum_threads %>
+</div>

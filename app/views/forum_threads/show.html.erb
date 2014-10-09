@@ -1,18 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1><%= @forum_thread.subject %></h1>
+  <p class="text-muted">Created by <%= @forum_thread.user.name %></p>
+  <%= render @forum_thread.forum_posts %>
+</div>
 
-<h1><%= @forum_thread.subject %></h1>
-
-Created by <%= @forum_thread.user.first_name %> <%= @forum_thread.user.last_name %>
-<%= link_to 'Edit', edit_forum_thread_path(@forum_thread) %> | <%= link_to 'Back', forum_threads_path %>
-
-<% @forum_thread.forum_posts.each do |forum_post| %>
-  <div><%= forum_post.user.first_name %> <%= forum_post.user.last_name %> commented:</div>
-  <div><%= forum_post.body %></div>
-<% end %>
-
-<hr />
-
-<%= form_for [@forum_thread, @forum_post] do |f| %>
-  <div><%= f.text_area :body %></div>
-  <div><%= f.submit %></div>
-<% end %>
