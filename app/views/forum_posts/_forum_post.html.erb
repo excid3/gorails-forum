@@ -1,3 +1,4 @@
-<hr />
-<p class="text-muted">Posted by <%= forum_post.user.name %></p>
-<p><%= forum_post.body %></p>
+<%= div_for forum_post do %>
+  <p class="text-muted">Posted by <%= forum_post.user.name %></p>
+  <p><%= forum_post.body %></p>
+<% end %>

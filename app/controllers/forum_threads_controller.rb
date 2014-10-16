@@ -7,11 +7,11 @@ class ForumThreadsController < ApplicationController
   end
 
   def show
+    @forum_post = ForumPost.new
   end
 
   def new
     @forum_thread = ForumThread.new
-    @forum_thread.forum_posts.new
     @forum_thread.forum_posts.new
   end
 

@@ -1,0 +1,9 @@
+<%= form_for [@forum_thread, @forum_post] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, placeholder: "Add a comment", rows: 10, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
