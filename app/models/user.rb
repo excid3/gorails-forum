@@ -17,14 +17,18 @@
 #  last_name              :string
 #  created_at             :datetime
 #  updated_at             :datetime
+#  deleted_at             :datetime
 #
 # Indexes
 #
+#  index_users_on_deleted_at            (deleted_at)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ActiveRecord::Base
+  acts_as_paranoid
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -32,5 +36,11 @@ class User < ActiveRecord::Base
   has_many :forum_threads
   has_many :forum_posts
 
-  def name; "#{first_name} #{last_name}"; end
+  def name
+    if deleted_at?
+      "Deleted User"
+    else
+      "#{first_name} #{last_name}"
+    end
+  end
 end

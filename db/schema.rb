@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913161212) do
+ActiveRecord::Schema.define(version: 20150205141754) do
 
   create_table "forum_posts", force: true do |t|
     t.integer  "forum_thread_id"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(version: 20140913161212) do
     t.string   "subject"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "forum_threads", ["deleted_at"], name: "index_forum_threads_on_deleted_at"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,10 @@ ActiveRecord::Schema.define(version: 20140913161212) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
+  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

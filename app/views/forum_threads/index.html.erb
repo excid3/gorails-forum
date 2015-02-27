@@ -2,6 +2,11 @@
   <div class="pull-right">
     <%= link_to "New Thread", new_forum_thread_path, class: "btn btn-success" %>
   </div>
+  <div class="pull-right" style="margin-right: 10px">
+    <%= search_form_for @q, html: { class: "form-inline" } do |f| %>
+      <%= f.search_field :subject_or_forum_posts_body_cont, placeholder: "Search...", class: "form-control" %>
+    <% end %>
+  </div>
 
   <h1 class="page-header">Forum Threads</h1>
   <%= render @forum_threads %>

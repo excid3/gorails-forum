@@ -1,0 +1,3 @@
+<h1>New post in <%= @forum_post.forum_thread.subject %></h1>
+
+<p><%= link_to "Reply to this comment", forum_thread_url(@forum_post.forum_thread, anchor: dom_id(@forum_post)) %></p>
