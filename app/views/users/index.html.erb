@@ -1,0 +1,30 @@
+<h1>Users</h1>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for @import, url: import_users_path, multipart: true do |f| %>
+  <% if @import.errors.any? %>
+    <div class="alert alert-danger">
+      <% @import.errors.full_messages.each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.file_field :file %>
+  <%= f.submit "Upload" %>
+<% end %>
